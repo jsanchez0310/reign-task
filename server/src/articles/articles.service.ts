@@ -1,6 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { Model } from 'mongoose';
 import { Article, ArticleDocument } from './articles.schema';
 
@@ -12,6 +13,16 @@ export class ArticlesService implements OnApplicationBootstrap {
   ) {}
 
   async onApplicationBootstrap(): Promise<void> {
+    await this.fetchData();
+  }
+
+  @Cron(CronExpression.EVERY_HOUR)
+  async handleCronData() {
+    await this.fetchData();
+    console.log('Data updated');
+  }
+
+  async fetchData() {
     await this.httpService
       .get('https://hn.algolia.com/api/v1/search_by_date?query=nodejs')
       .subscribe((res) => {
@@ -30,7 +41,6 @@ export class ArticlesService implements OnApplicationBootstrap {
         });
       });
   }
-
   async findAll(): Promise<Article[]> {
     return await this.articleModel.find({ isDeleted: false }).exec();
   }

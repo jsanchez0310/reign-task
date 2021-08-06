@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ScheduleModule } from '@nestjs/schedule';
 import { ArticlesModule } from './articles/articles.module';
 
 @Module({
@@ -9,6 +10,7 @@ import { ArticlesModule } from './articles/articles.module';
       dbName: 'articles',
       useFindAndModify: false,
     }),
+    ScheduleModule.forRoot(),
   ],
 })
 export class AppModule {}
