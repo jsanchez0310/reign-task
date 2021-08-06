@@ -1,10 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, ObjectId } from 'mongoose';
+import { Document } from 'mongoose';
 
 export type ArticleDocument = Article & Document;
 
 @Schema()
 export class Article {
+  @Prop()
+  title: string;
+
   @Prop()
   created_at: string;
 
@@ -18,9 +21,6 @@ export class Article {
   points: number;
 
   @Prop()
-  story_text: string;
-
-  @Prop()
   comment_text: string;
 
   @Prop()
@@ -28,6 +28,9 @@ export class Article {
 
   @Prop()
   story_id: number;
+
+  @Prop()
+  story_text: string;
 
   @Prop()
   story_title: string;

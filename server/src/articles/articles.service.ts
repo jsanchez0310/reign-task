@@ -19,7 +19,7 @@ export class ArticlesService implements OnApplicationBootstrap {
   @Cron(CronExpression.EVERY_HOUR)
   async handleCronData() {
     await this.fetchData();
-    console.log('Data updated');
+    console.log('Data up to date!');
   }
 
   async fetchData() {
@@ -41,7 +41,14 @@ export class ArticlesService implements OnApplicationBootstrap {
         });
       });
   }
+
   async findAll(): Promise<Article[]> {
     return await this.articleModel.find({ isDeleted: false }).exec();
+  }
+
+  async remove(id: string): Promise<string> {
+    return (
+      await this.articleModel.findOneAndUpdate({ _id: id }, { isDeleted: true })
+    )._id;
   }
 }
