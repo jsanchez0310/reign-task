@@ -53,6 +53,14 @@ describe('ArticlesController', () => {
         articles: mockArticlesService.findAll(),
       });
     });
+
+    it('should not return an article with isDeleted = true', async () => {
+      expect(
+        (await articlesController.findAll()).articles.some(
+          ({ isDeleted }) => isDeleted === true,
+        ),
+      ).toBe(false);
+    });
   });
 
   describe('remove', () => {
