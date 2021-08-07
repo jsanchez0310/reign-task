@@ -7,8 +7,10 @@ export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
   @Get()
-  async findAll(): Promise<Article[]> {
-    return await this.articlesService.findAll();
+  async findAll(): Promise<{ articles: Article[] }> {
+    return {
+      articles: await this.articlesService.findAll(),
+    };
   }
 
   @Delete(':id')
