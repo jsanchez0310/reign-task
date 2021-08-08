@@ -6,6 +6,12 @@ stages:
 cache:
   paths:
     - node_modules/
+build-server:
+  stage: build
+  script:
+    - cd server
+    - npm ci -s
+    - npm run build
 server-unit-test:
   stage: test
   script:
@@ -16,4 +22,5 @@ server-e2e-test:
   stage: test
   script:
     - cd server
-    - npm run test:cov
+    - npm ci -s
+    - npm run test:e2e
