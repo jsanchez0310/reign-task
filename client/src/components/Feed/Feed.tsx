@@ -2,7 +2,7 @@ import { Article } from 'feed';
 import { DateTime } from 'luxon';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { fetchArticles } from '../../services/articles';
+import { deleteArticle, fetchArticles } from '../../services/articles';
 import './Feed.css';
 
 const Feed: React.FC = () => {
@@ -16,8 +16,10 @@ const Feed: React.FC = () => {
     getArticles();
   }, []);
 
-  const onDeleteArticle = (id: number) => {
-    console.log(`article ${id} deleted`);
+  const onDeleteArticle = async (id: string) => {
+    const deletedId = await deleteArticle(id);
+    const _articles = articles.filter((article) => article._id !== deletedId);
+    setArticles(_articles);
   };
 
   const handleCreatAt = (date: string) => {
@@ -45,7 +47,7 @@ const Feed: React.FC = () => {
               </p>
             </div>
             <div className='article-time'>{handleCreatAt(article.created_at)}</div>
-            <div className='delete' onClick={() => onDeleteArticle(i)}>
+            <div className='delete' onClick={() => onDeleteArticle(article._id)}>
               <svg
                 stroke='currentColor'
                 fill='currentColor'

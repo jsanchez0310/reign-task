@@ -43,7 +43,10 @@ export class ArticlesService implements OnApplicationBootstrap {
   }
 
   async findAll(): Promise<Article[]> {
-    return await this.articleModel.find({ isDeleted: false }).exec();
+    return await this.articleModel
+      .find({ isDeleted: false })
+      .sort({ created_at: 'desc', test: -1 })
+      .exec();
   }
 
   async remove(id: string): Promise<string> {

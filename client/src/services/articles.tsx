@@ -10,3 +10,12 @@ export const fetchArticles = async () => {
     throw err;
   }
 }
+
+export const deleteArticle = async (id:string) => {
+  try {
+    const res: AxiosResponse = await axios.delete(`${server}/articles/${id}`);
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
