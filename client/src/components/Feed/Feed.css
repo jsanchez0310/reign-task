@@ -1,0 +1,46 @@
+.feed {
+  display: flex;
+  padding: 1rem 2rem;
+  flex-direction: column;
+ }
+
+.article {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.article:hover {
+  cursor: pointer;
+  background-color: #fafafa;
+}
+
+.article-title {
+  margin: 0 1.2rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.article-time {
+  margin: 0 1.2rem;
+  color: #333;
+  width: 130px;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.article .delete {
+  visibility: hidden;
+  color: #333;
+  margin: 0 1.2rem;
+  font-size: 1.2rem;
+}
+
+.article:hover .delete{
+  visibility: visible;
+}

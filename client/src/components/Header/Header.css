@@ -2,7 +2,8 @@
   background-color: #333;
   color: #FFF;
   padding: 3rem 2rem 3.5rem 2rem;
-  width: 100%;
+  position: sticky;
+  top: 0;
 }
 
 .title {
