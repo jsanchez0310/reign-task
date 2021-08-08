@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  server:
+    container_name: server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      - "MONGODB_URI=mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongodb:27017"
+  database:
+    image: 'mongo'
+    container_name: 'mongodb'
+    environment:
+      - "MONGO_INITDB_ROOT_USERNAME=${MONGODB_USERNAME}"
+      - "MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}"
