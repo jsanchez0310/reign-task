@@ -1,8 +1,8 @@
-## Reign-task
+# Reign-task
 
 This monorepo contains an application stack that fetch articles from an API to save them to a database and then deliver them to the client-side application.
 
-# Deploy the sample stack
+## Deploy the sample stack
 
 First you will need to have installed Docker and Docker compose:
 
@@ -15,7 +15,7 @@ To build and deploy your application for the first time, make sure you have .env
 docker-compose up
 ```
 
-# Build Compose
+## Build Compose
 
 To refresh changes in services and build, run this command:
 
@@ -23,7 +23,7 @@ To refresh changes in services and build, run this command:
 docker-compose build
 ```
 
-# Cleanup
+## Cleanup
 
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
 
