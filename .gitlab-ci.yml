@@ -1,0 +1,19 @@
+default:
+  image: node:lts
+stages:
+  - build
+  - test
+cache:
+  paths:
+    - node_modules/
+server-unit-test:
+  stage: test
+  script:
+    - cd server
+    - npm ci -s
+    - npm run test:cov
+server-e2e-test:
+  stage: test
+  script:
+    - cd server
+    - npm run test:cov
