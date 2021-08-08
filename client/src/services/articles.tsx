@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { Article } from 'feed';
-const server = process.env.REACT_APP_SERVER_URL || 'http://localhost:3000';
+const server = process.env.REACT_APP_SERVER_URL;
 
 export const fetchArticles = async () => {
   try {
